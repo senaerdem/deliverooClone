@@ -22,14 +22,10 @@ export default function RootLayoutNav() {
         }} 
         />
         <Stack.Screen
-         name="(modal)/filter"
+         name="(modal)/location-search"
          options={{
-          presentation: 'modal',
-          headerTitle: 'Filter',
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: Colors.lightGrey,
-          },
+          presentation: 'fullScreenModal',
+          headerTitle: 'Search Location',
           headerLeft: () => (
             <TouchableOpacity onPress={() => {
               navigation.goBack();
