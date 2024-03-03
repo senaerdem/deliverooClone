@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     searchContainer: {
-        height: 60,
+        height: 50,
         backgroundColor: '#fff'
     },
     searchSection: {

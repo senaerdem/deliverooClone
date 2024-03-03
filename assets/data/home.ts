@@ -50,7 +50,7 @@ export const restaurants = [
     id: '3',
     rating: '4.5 Excellent',
     ratings: '(500+)',
-    distance: '3 miles away',
+    distance: '2.9 miles away',
     img: require('@/assets/data/r3.jpeg'),
     tags: ['Spanish', 'Salads', 'Tpas', 'Pasta'],
     duration: '25 - 45',
