@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import useBasketStore from '@/store/basketStore'
 import Colors from '@/constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ConfettiCanon from 'react-native-confetti-cannon';
+import { Link } from 'expo-router';
+import SwipeableRow from '@/components/SwipeableRow';
 
 const Basket = () => {
     const { products, total, clearCart, reduceProduct } = useBasketStore();
@@ -20,9 +23,18 @@ const Basket = () => {
 
   return (
     <>
-    { order && (
-        <Text>Cool order</Text>
+    {order && <ConfettiCanon count={200} origin={{ x: -10, y: 0 }} fallSpeed={2500} fadeOut={true} autoStart={true} />}
+    {order && (
+        <View style={{ marginTop: '50%', padding: 20, alignItems: 'center' }}>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Thank you for your order!</Text>
+            <Link href={'/'} asChild>
+                <TouchableOpacity style={styles.orderButton}>
+                    <Text style={styles.footerText}>New Order</Text>
+                </TouchableOpacity>
+            </Link>
+        </View>
     )}
+    
         { !order && (
             <>
             <FlatList 
@@ -30,11 +42,13 @@ const Basket = () => {
             ListHeaderComponent={<Text style={styles.section}>Items</Text>}
             ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: Colors.grey }} />}
             renderItem={({ item }) => (
+                <SwipeableRow onDelete={() => reduceProduct(item)}>
                 <View style={styles.row}>
                     <Text style={{ color: Colors.primary}}>{item.quantity}x</Text>
                     <Text style={{ flex: 1, fontSize: 18 }}>{item.name}</Text>
                     <Text style={{ fontSize: 18 }}>${item.price * item.quantity}</Text>
                 </View>
+                </SwipeableRow>
             )}
             ListFooterComponent={
                 <View>
@@ -124,6 +138,16 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,
     },
+    orderButton: {
+        backgroundColor: Colors.primary,
+        paddingHorizontal: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+        width: 250,
+        height: 50,
+        justifyContent: 'center',
+        marginTop: 20,
+    }
 });
 
 export default Basket
