@@ -136,7 +136,7 @@ const Details = () => {
     {items > 0 && (
         <View style={styles.footer}>
             <SafeAreaView style={{ backgroundColor: '#fff' }}>
-                <Link href="/" asChild>
+                <Link href="/basket" asChild>
                     <TouchableOpacity style={styles.fullButton}>
                         <Text style={styles.basket}>{items}</Text>
                         <Text style={styles.footerText}>View Basket</Text>
